@@ -1,5 +1,6 @@
 package com.ayomide.guardian.system
 
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -278,6 +279,8 @@ class GuardService : Service(), SensorEventListener {
         nm.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALL)
     }
 
+    // savedDndFilter came from currentInterruptionFilter, so it is a valid filter constant.
+    @SuppressLint("WrongConstant")
     private fun restoreDnd() {
         val nm = getSystemService(NotificationManager::class.java) ?: return
         if (savedDndFilter > 0 && nm.isNotificationPolicyAccessGranted) nm.setInterruptionFilter(savedDndFilter)
