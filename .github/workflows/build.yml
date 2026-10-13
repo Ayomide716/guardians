@@ -31,6 +31,10 @@ jobs:
           chmod +x gradlew
           ./gradlew --no-daemon testDebugUnitTest lintDebug assembleDebug
 
+      - name: Show lint report on failure
+        if: failure()
+        run: cat app/build/intermediates/lint_intermediate_text_report/debug/lintReportDebug/lint-results-debug.txt || true
+
       - name: Rename APK
         run: |
           mkdir -p out
