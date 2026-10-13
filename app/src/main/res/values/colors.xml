@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg">#FFF4F7F7</color>
+    <color name="card">#FFE6EDEC</color>
+    <color name="card_high">#FFD9E2E1</color>
+    <color name="divider">#FFCBD5D4</color>
+    <color name="text_primary">#FF101615</color>
+    <color name="text_secondary">#FF4A5755</color>
+    <color name="accent">#FF0F766E</color>
+    <color name="on_accent">#FFFFFFFF</color>
+    <color name="accent_container">#FFC6F2EA</color>
+    <color name="on_accent_container">#FF053D38</color>
+    <color name="success">#FF15803D</color>
+    <color name="danger">#FFB91C1C</color>
+    <color name="danger_container">#FFFFDAD6</color>
+    <color name="warning">#FFB45309</color>
+    <color name="alarm_bg">#FF7F1023</color>
+    <color name="alarm_key">#FF9B1B31</color>
+    <color name="alarm_fg">#FFFFF1F3</color>
+    <color name="ic_launcher_background">#FF0B2E2A</color>
+
+    <color name="sec">#FFFFDDE4</color>     <color name="on_sec">#FF7A1730</color>     <color name="sec_strong">#FFE11D48</color>     <color name="on_sec_strong">#FFFFFFFF</color>
+    <color name="net">#FFDCE9FF</color>     <color name="on_net">#FF0B3A82</color>     <color name="net_strong">#FF2563EB</color>     <color name="on_net_strong">#FFFFFFFF</color>
+    <color name="dat">#FFEADDFF</color>     <color name="on_dat">#FF4A2C8A</color>     <color name="dat_strong">#FF7C3AED</color>     <color name="on_dat_strong">#FFFFFFFF</color>
+    <color name="bat">#FFFFEBB3</color>     <color name="on_bat">#FF5C4300</color>     <color name="bat_strong">#FFD97706</color>     <color name="on_bat_strong">#FFFFFFFF</color>
+</resources>

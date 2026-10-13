@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Guardian</string>
+    <string name="vpn_usage">Blocks ads and trackers in the apps you choose by filtering their DNS lookups on this phone.</string>
+    <string name="fgs_usage">Anti-theft alarm, find-my-phone ringing and charge alarm.</string>
+</resources>

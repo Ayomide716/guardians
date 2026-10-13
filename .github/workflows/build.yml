@@ -1,0 +1,68 @@
+name: Build APK
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Unit tests, lint and debug APK
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon testDebugUnitTest lintDebug assembleDebug
+
+      - name: Rename APK
+        run: |
+          mkdir -p out
+          cp app/build/outputs/apk/debug/app-debug.apk out/Guardian-debug.apk
+          ls -l out
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Guardian-debug-apk
+          path: out/Guardian-debug.apk
+
+      - name: Upload test and lint reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports
+          path: |
+            app/build/reports/
+            app/build/test-results/
+          if-no-files-found: ignore
+
+      # Publishes the APK as a GitHub Release so it can be downloaded directly
+      # (no zip) from a phone browser: Releases -> "PrefixBlocker latest debug".
+      - name: Publish rolling "latest" release
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete debug-latest --cleanup-tag --yes || true
+          gh release create debug-latest out/Guardian-debug.apk \
+            --prerelease \
+            --target "$GITHUB_SHA" \
+            --title "Guardian latest debug build" \
+            --notes "Built from ${GITHUB_REF_NAME} @ ${GITHUB_SHA::7}. Download Guardian-debug.apk below and open it on your phone to install."
